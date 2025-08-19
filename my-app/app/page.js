@@ -23,6 +23,34 @@ export default function Home(){
         Praesent semper dictumst euismod suscipit cursus fusce suspendisse phasellus eget, sociosqu sagittis id felis primis risus aliquam ornare aliquam nunc, nisi laoreet velit ornare luctus eros nulla lectus. at cubilia rhoncus mollis a integer vitae eu vestibulum, pretium leo phasellus tristique cubilia pulvinar tellus etiam aliquet, elit enim turpis habitasse sapien donec volutpat. integer etiam sociosqu non curae suscipit nulla ullamcorper vivamus felis, at pharetra eget feugiat erat elit nunc varius elit, nunc hac urna etiam egestas imperdiet rhoncus elit. habitant eleifend tincidunt dolor feugiat, tempor vehicula tristique porttitor tristique, diam eget non. 
       </p>
       <hr></hr>
+      <img src="/assets/images/pinguins.jpg" width={"300"} height={"300"}></img>
+      <hr></hr>
+      <audio
+        src="horse.mp3" controls> 
+      </audio>
+      <hr></hr>
+      <video src="mov_bbb.ogg" type="video/ogg" controls
+      ></video>
+      <hr></hr>
+      <pre> bom
+        dia
+        tudo
+        bem?
+      </pre>
+      <hr></hr>
+      <sub><mark>AAHHHHHHHHHHH</mark>Texto</sub>
+      <hr></hr>
+      <h1></h1>
+        <table border="1">
+          <tr>
+            <th>aluno</th>
+            <th>nota</th>
+          </tr>
+          <tr>
+            <td colSpan="2">Carlos</td>
+            <td colSpan="2">10</td>
+          </tr>
+          </table>
     </div>
 
   )
