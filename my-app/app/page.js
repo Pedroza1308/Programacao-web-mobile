@@ -2,7 +2,7 @@
 export default function Home(){
   return(
     <div> 
-      <img src="/assets/foto-minha.jpg" height={"300"} width={"300"}></img>
+      <img src="/assets/foto-minha.jpg" height={300} width={300}></img>
       <h1>Olá, me chamo Pedro Alves</h1>
       <hr></hr>
       <p>Tenho 21 anos e sou estudante do 5°/6° período do curso Ciência da computação na Universidade Católica de Pernambuco.
