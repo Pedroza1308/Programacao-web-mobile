@@ -22,6 +22,8 @@ export default function Home() {
       </p>
 
       <audio src="/assets/a-primeira-vista.mp4" controls />
-    </div>
+      </div>
   );
 }
+
+//target x iframe: meu target pode ser um iframe

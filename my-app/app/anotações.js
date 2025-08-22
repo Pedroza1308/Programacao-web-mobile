@@ -69,6 +69,51 @@ export default function Home() {
           <td>10</td>
         </tr>
       </table>
+
+      <hr></hr>
+      <iframe src="https://www.youtube.com/watch?v=A7ry4cx6HfY&list=RDA7ry4cx6HfY&start_radio=1&pp=ygUDYTd4oAcB" frameBorder={0} allowFullScreen></iframe>
+
+      <hr></hr>
+      <form action={"pagina-para-envio.jsp"}>
+        nome do usuario: <input type="text" name="usuario"></input>
+        senha: <input type="password" name="senha"></input>
+        <input type="submit" name="login"></input>
+      
+      <hr></hr>
+      <input type="date" name="data" value={"submit"}></input>
+
+      <input type="checkbox" name="genero" value={"homem"} checked>homem</input>
+
+      <input type="file" name="arquivo" accept=".pdf"></input>
+
+      <input type="submit" value={"Enviar"}></input>
+
+      <hr></hr>
+      <select name="secao" multiple>
+        <option value={"hortifruti"}></option>
+        <option value={"carnes"}></option>
+        <option value={"limpeza"}></option>
+      </select>
+
+      <hr></hr>
+      <input list="browsers">
+      <datalist id="browsers">
+        <option value={"firefox"}></option>
+        <option value={"chrome"}></option>
+        <option value={"opera"}></option>
+        <option value={"explorer"}></option>
+        <option value={"safari"}></option>
+      </datalist>
+      </input>
+      </form>
     </div>
   );
 }
+
+//target x iframe: meu target pode ser um iframe
+/*form action={"pagina-para-envio.jsp"}
+  envia as informacoes daquele form para a pagina especificado
+  
+  method: especifica o metodo hhtp usado quando submetendo o formulario
+    exemplo-> "get" deixa informações expostas; recomenda-se, para caso de senhas e urls, o metodo "post"
+
