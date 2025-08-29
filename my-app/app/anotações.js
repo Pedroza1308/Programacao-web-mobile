@@ -9,7 +9,10 @@ import RootLayout from "./layout";
 
 export default function Home() {
   return (
-    <div>
+    <div style={"background-color:#FF0000;width: 200px;"}>
+      
+      
+
       <a href="www.google.com.br">Ir para o google</a>
       <br />
       <a href="secao 1"> ir para secao 1</a>
@@ -106,6 +109,18 @@ export default function Home() {
       </datalist>
       </input>
       </form>
+
+      <hr></hr>
+
+      <label for="inpUsuario">Usuario</label>
+      <input type="text" name="usuario" id="inpUsuario"></input>
+
+    <table style={"width: 300px; border:dashed;"}> </table>
+    
+    <hr></hr>
+
+    
+
     </div>
   );
 }
@@ -117,3 +132,11 @@ export default function Home() {
   method: especifica o metodo hhtp usado quando submetendo o formulario
     exemplo-> "get" deixa informações expostas; recomenda-se, para caso de senhas e urls, o metodo "post"
 
+  tag label: define rotulos para os varios elementos HTML  estudados nessa seção
+
+  CSS:
+    formatacao pelos arquivos .css -> ex: page.module.css
+    layout.js -> responsavel por fazer a comunicacao entre html e css
+    tipo de dados seletores -> ao declarar .tbldados, invez de chamalo por <table class="tbldados">, voce
+    o chama por <table classeName="tbldados">
+*/

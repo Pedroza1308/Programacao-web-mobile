@@ -1,3 +1,7 @@
+
+import { Html } from "next/document";
+import "./globals.css";
+
 export default function Home() {
   return (
     <div>
@@ -21,7 +25,14 @@ export default function Home() {
         Sou apaixonado por música e, pra compartilhar um pouco mais de mim, vou mostrar uma canção que estive escutando bastante recentemente:
       </p>
 
+      <hr></hr>
+
+
+
       <audio src="/assets/a-primeira-vista.mp4" controls />
+
+      <hr></hr>
+      
       </div>
   );
 }
