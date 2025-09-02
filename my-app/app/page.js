@@ -1,17 +1,17 @@
 
-import { Html } from "next/document";
+//import { Html } from "next/document";
 import "./globals.css";
 
 export default function Home() {
   return (
     <div>
-      <img src="/assets/foto-minha.jpg" height={300} width={300} />
+      <img className="avatar" src="/assets/foto-minha.jpg" height={300} width={300} />
 
       <h1>Olá, me chamo Pedro Alves</h1>
 
       <hr />
 
-      <p>
+      <p className="bluetext">
         Tenho 21 anos e sou estudante do 5&ordm;/6&ordm; período do curso Ciência da Computação na Universidade Católica de Pernambuco.
         Gosto muito de aprender e conhecer novas pessoas. Duas curiosidades sobre minha pessoa são:
         Primeiro, antes de ingressar na Católica, fiz dois períodos de Matemática Bacharelado na Universidade Federal de Pernambuco,
@@ -32,9 +32,11 @@ export default function Home() {
       <audio src="/assets/a-primeira-vista.mp4" controls />
 
       <hr></hr>
-      
       </div>
   );
 }
 
+
+
 //target x iframe: meu target pode ser um iframe
+//para consultas no inspecionar da pagina: "let" (para criação) "filter" e "map" como principais manipulações
