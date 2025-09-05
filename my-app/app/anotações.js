@@ -119,9 +119,8 @@ export default function Home() {
     
     <hr></hr>
 
-    
-
     </div>
+
   );
 }
 

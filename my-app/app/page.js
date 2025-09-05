@@ -1,6 +1,7 @@
 
 //import { Html } from "next/document";
 import "./globals.css";
+import { products } from "ProductsLists";
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
       <audio src="/assets/a-primeira-vista.mp4" controls />
 
       <hr></hr>
+
+      
       </div>
   );
 }
