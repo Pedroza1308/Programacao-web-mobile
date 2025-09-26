@@ -1,4 +1,4 @@
-/* Container Principal */
+/* Container Principal do Jogo */
 .hangmanContainer {
     display: flex;
     flex-direction: column;
@@ -7,11 +7,11 @@
     background-color: #f7f7f7;
     border-radius: 8px;
     margin-top: 20px;
-    max-width: 800px; /* Mais largo para acomodar a forca e a lista de letras */
+    max-width: 800px;
     margin: 20px auto;
 }
 
-/* Área do Jogo (Forca + Lista de Letras) */
+/* Área do Jogo (Boneco + Lista de Letras) */
 .gameArea {
     display: flex;
     gap: 40px;
@@ -21,153 +21,96 @@
 }
 
 /* -------------------------------------- */
-/* 1. VISUAL DA FORCA (O mais importante) */
+/* 1. VISUAL DO BONECO (CORRIGIDO) */
 /* -------------------------------------- */
 
 .hangmanGallowsArea {
-    width: 250px;
-    height: 350px;
+    width: 200px;
+    height: 250px;
     position: relative;
-    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.gallows {
-    /* Define o suporte base (Poste vertical e base horizontal) */
+/* Container que centraliza o boneco */
+.figure {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100px; /* Largura total da figura */
+    height: 160px; /* Altura total da figura */
+    top: -20px; /* Ajuste de posição */
 }
 
-/* Os passos de desenho da forca e do boneco são controlados por uma única div com classes progressivas */
-/* A forca será desenhada usando borders ou pseudo-elementos (mais complexo, aqui usaremos background/border) */
+/* Regra para sumir as partes (FADE OUT) */
+.removed {
+    opacity: 0 !important;
+    transition: opacity 0.3s;
+}
 
-/* Base e Estrutura (Sempre visível, mas vamos esconder no CSS e mostrar progressivamente) */
-.gallows::before { /* Poste Vertical */
-    content: '';
+/* Estilos Comuns para Linhas (Corpo, Braços, Pernas) */
+.body, .left-arm, .right-arm, .left-leg, .right-leg {
     position: absolute;
-    bottom: 0;
-    left: 10%;
-    width: 5px;
-    height: 90%;
-    background-color: transparent; /* Começa transparente */
-    transition: all 0.5s;
+    background-color: #000;
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
 }
-.gallows::after { /* Base Horizontal */
-    content: '';
+
+/* A. Cabeça (Bola - 6ª a sumir) */
+.head {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    height: 5px;
-    background-color: transparent;
-    transition: all 0.5s;
-}
-
-/* Passo 1: Base e Poste */
-.gallows-step-1::before,
-.gallows-step-2::before {
-    background-color: #000;
-}
-.gallows-step-2::after {
-    background-color: #000;
-}
-
-/* Passo 3: Trave Superior */
-.gallows-step-3::before {
-    /* Trave horizontal de cima, desenhada no topo do poste */
-    width: 100px;
-    height: 5px;
-    top: 5%;
-    left: 10%;
-    background-color: #000;
-    transform: none; /* Resetando transformações anteriores se houver */
-}
-
-/* Passo 4: Corda */
-.gallows-step-4::before {
-    /* Corda/Suporte da cabeça */
-    width: 5px;
+    width: 30px;
     height: 30px;
-    top: 5%;
-    left: 45%;
-    background-color: #000;
-}
-
-
-/* --- DESENHO DO BONECO (USANDO PSEUDO-ELEMENTOS NA CLASSE .gallows) --- */
-
-/* Passo 5: Cabeça */
-.gallows-step-5::after {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
     border: 3px solid #000;
     border-radius: 50%;
-    top: 8%; /* Posiciona no final da corda */
-    left: 42%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
-/* Passo 6: Corpo */
-.gallows-step-6::after {
-    content: '';
-    position: absolute;
+/* B. Corpo (Linha Vertical - 5ª a sumir) */
+.body {
     width: 3px;
-    height: 80px;
-    background-color: #000;
-    top: 14%; 
-    left: 48%;
+    height: 60px;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Passo 7: Braço Esquerdo */
-.gallows-step-7::before {
-    content: '';
-    position: absolute;
+/* C. Braços (Linhas inclinadas - 3ª e 4ª a sumir) */
+.left-arm {
     width: 3px;
-    height: 50px;
-    background-color: #000;
-    top: 20%; 
-    left: 48%;
-    transform: rotate(45deg); /* Angulo do braço */
+    height: 30px;
+    top: 40px;
+    left: calc(50% - 15px); /* Desloca um pouco para a esquerda */
+    transform: rotate(45deg);
+    transform-origin: top;
+}
+.right-arm {
+    width: 3px;
+    height: 30px;
+    top: 40px;
+    left: calc(50% + 15px); /* Desloca um pouco para a direita */
+    transform: rotate(-45deg);
     transform-origin: top;
 }
 
-/* Passo 8: Braço Direito */
-.gallows-step-8::before {
-    content: '';
-    position: absolute;
+/* D. Pernas (Linhas inclinadas - 1ª e 2ª a sumir) */
+.left-leg {
     width: 3px;
-    height: 50px;
-    background-color: #000;
-    top: 20%; 
-    left: 48%;
-    transform: rotate(-45deg); /* Angulo do braço */
+    height: 40px;
+    top: 85px;
+    left: calc(50% - 10px);
+    transform: rotate(15deg);
     transform-origin: top;
 }
-
-/* Passo 9: Perna Esquerda */
-.gallows-step-9::after {
-    content: '';
-    position: absolute;
+.right-leg {
     width: 3px;
-    height: 50px;
-    background-color: #000;
-    top: 35%; 
-    left: 48%;
-    transform: rotate(45deg); /* Angulo da perna */
-    transform-origin: top;
-}
-
-/* Passo 10: Perna Direita (Fim do Jogo) */
-.gallows-step-10::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 50px;
-    background-color: #000;
-    top: 35%; 
-    left: 48%;
-    transform: rotate(-45deg); /* Angulo da perna */
+    height: 40px;
+    top: 85px;
+    left: calc(50% + 10px);
+    transform: rotate(-15deg);
     transform-origin: top;
 }
 
@@ -192,7 +135,7 @@
 /* -------------------------------------- */
 
 .guessedLettersList {
-    width: 250px; /* Largura fixa para ficar ao lado da forca */
+    width: 250px;
     text-align: left;
     margin-top: 50px;
 }
@@ -218,7 +161,7 @@
 .wrongGuess {
     background-color: #f8d7da;
     color: #721c24;
-    text-decoration: line-through; /* Risca a letra errada */
+    text-decoration: line-through;
 }
 
 /* -------------------------------------- */

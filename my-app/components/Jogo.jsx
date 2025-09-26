@@ -1,16 +1,26 @@
 'use client'; 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import styles from './Jogo.module.css'; // Usaremos um módulo CSS para os estilos
+import styles from './Jogo.module.css';
+
+// O limite de erros (6 partes: cabeça, corpo, 2 braços, 2 pernas)
+const MAX_ERRORS = 6; 
+
+// Ordem das partes do boneco para remoção (do primeiro ao último erro)
+const FIGURE_PARTS = [
+    'right-leg',  // 1. Perna Direita (Sumirá no 1º erro)
+    'left-leg',   // 2. Perna Esquerda (Sumirá no 2º erro)
+    'right-arm',  // 3. Braço Direito (Sumirá no 3º erro)
+    'left-arm',   // 4. Braço Esquerdo (Sumirá no 4º erro)
+    'body',       // 5. Corpo (Sumirá no 5º erro)
+    'head'        // 6. Cabeça (Sumirá no 6º erro - Fim do jogo)
+];
 
 // Lista de palavras aleatórias (com no máximo 10 letras)
 const WORDS = [
   "REACT", "PYTHON", "JAVA", "HTML", "CSS",
   "DJANGO", "VERCEL", "API", "CODIGO", "FORCA"
 ];
-
-// O limite de erros (7 partes do corpo + base + poste = 10 tentativas para completar o desenho da forca)
-const MAX_ERRORS = 10; 
 
 // Inicializa um novo jogo
 const initializeGame = () => {
@@ -56,7 +66,6 @@ export default function Jogo() {
     const letter = key.toUpperCase();
 
     if (guessedLetters.has(letter)) {
-      // Já tentou essa letra
       return; 
     }
 
@@ -92,7 +101,7 @@ export default function Jogo() {
       // Se ganhou, reinicia com uma palavra nova
       setGameState(initializeGame());
     } else {
-      // Se perdeu, reinicia com a mesma palavra (como pedido)
+      // Se perdeu, reinicia com a mesma palavra
       setGameState(prev => ({ 
         ...prev, 
         guessedLetters: new Set(),
@@ -113,13 +122,30 @@ export default function Jogo() {
     ));
   };
   
-  // Renderiza o boneco da forca (usando CSS Module)
+  // Renderiza o boneco (lógica inversa: começa completo, desaparece)
   const renderHangman = () => {
-      return (
-          <div className={styles.hangmanVisual}>
-              <div className={`${styles.gallows} ${styles[`gallows-step-${wrongGuesses}`]}`} />
-          </div>
-      );
+    const parts = FIGURE_PARTS.map((partName, index) => {
+        // O índice (0 a 5) + 1 é o passo (1 a 6) que remove a parte.
+        const removalStep = index + 1; 
+
+        // A parte está visível se o número de erros for MENOR que o passo de remoção.
+        const isVisible = wrongGuesses < removalStep;
+        
+        return (
+            <span 
+                key={partName} 
+                className={`${styles[partName]} ${isVisible ? '' : styles.removed}`}
+            />
+        );
+    });
+
+    return (
+        <div className={styles.hangmanVisual}>
+            <div className={styles.figure}>
+                {parts}
+            </div>
+        </div>
+    );
   };
 
 
@@ -128,7 +154,7 @@ export default function Jogo() {
       
       <div className={styles.gameArea}>
         
-        {/* 1. VISUAL DA FORCA */}
+        {/* 1. VISUAL DO BONECO */}
         <div className={styles.hangmanGallowsArea}>
           {renderHangman()}
         </div>
