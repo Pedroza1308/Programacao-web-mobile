@@ -1,7 +1,5 @@
 # Portifólio Web Mobile
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Curriculo</li>
+  <li>Jogo da forca</li>
 </ul>
