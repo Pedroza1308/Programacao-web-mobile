@@ -1,0 +1,57 @@
+/* Container principal (HEADER) */
+.navbar {
+    width: 100%;
+    background-color: #333; /* Fundo escuro */
+    padding: 10px 0; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Container interno (Limita a largura e usa Flexbox) */
+.container {
+    /* Centraliza o conteúdo da navbar */
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 20px; /* Garante margem nas laterais */
+
+    /* Usa Flexbox para alinhamento LADO-A-LADO */
+    display: flex;
+    justify-content: space-between; /* Alinha logo à esquerda e links à direita */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* Estilo para a Logo/Nome */
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Container dos Links de Navegação (JOGO) */
+.navLinks {
+    display: flex; /* Garante que os links fiquem lado a lado se houver mais de um */
+    gap: 20px;
+}
+
+/* Estilo para o Link "JOGO" */
+.gameLink {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffcc00; /* Cor amarela para destaque */
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #ffcc00;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+.gameLink:hover {
+    background-color: #ffcc00;
+    color: #333;
+}

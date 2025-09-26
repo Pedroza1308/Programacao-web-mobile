@@ -1,9 +1,9 @@
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 export default function Home() {
   return (
-    <>
+    <> 
       <Navbar />
 
     <div className="container">
@@ -52,8 +52,9 @@ export default function Home() {
       </div>
        
       </div>
-
+      </>
 
 
     
   );
+}
