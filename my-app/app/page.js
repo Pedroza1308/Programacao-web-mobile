@@ -1,9 +1,11 @@
-
-//import { Html } from "next/document";
+import Navbar from "@/components/navbar";
 import "./globals.css";
 
 export default function Home() {
   return (
+    <>
+      <Navbar />
+
     <div className="container">
       
       <div className="header-centralized">
@@ -23,15 +25,35 @@ export default function Home() {
 
 
       <div>
-        
-      </div>
-      <h2>Experiências</h2>
+        <h2>Experiencia</h2>
         <ul className="experience-list">
           <li>Auxiliar pela “Igeduc” na preparação e confecção de provas destinadas ao concurso público de Guarda Municipal da prefeitura de Camaragibe (2024) </li>
         </ul>
-    
+        </div>
+
+      <hr></hr>
+
+      <div>
+        <h2>Habilidades e Ferramentas</h2>
+        <ul className="habilidades-ferramentas">
+          <li>Trabalho em equipe</li>
+          <li>Comunicação competente e fluente em inglês (Certificado “Express Plus” emitido pela Cultura Inglesa Madalena  em Junho, 2019) </li>
+          <li>React</li>
+          <li>Django</li>
+          <li>Spotfy WEB API</li>
+          <li>Versel </li>
+          <li>C</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>HTML</li>
+          <li>JavaScript</li>
+          <li>CSS</li>
+        </ul>
       </div>
+       
+      </div>
+
+
 
     
   );
-}
