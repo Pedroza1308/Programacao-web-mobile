@@ -1,0 +1,249 @@
+/* Container Principal */
+.hangmanContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin-top: 20px;
+    max-width: 800px; /* Mais largo para acomodar a forca e a lista de letras */
+    margin: 20px auto;
+}
+
+/* Área do Jogo (Forca + Lista de Letras) */
+.gameArea {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+
+/* -------------------------------------- */
+/* 1. VISUAL DA FORCA (O mais importante) */
+/* -------------------------------------- */
+
+.hangmanGallowsArea {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.gallows {
+    /* Define o suporte base (Poste vertical e base horizontal) */
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Os passos de desenho da forca e do boneco são controlados por uma única div com classes progressivas */
+/* A forca será desenhada usando borders ou pseudo-elementos (mais complexo, aqui usaremos background/border) */
+
+/* Base e Estrutura (Sempre visível, mas vamos esconder no CSS e mostrar progressivamente) */
+.gallows::before { /* Poste Vertical */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 5px;
+    height: 90%;
+    background-color: transparent; /* Começa transparente */
+    transition: all 0.5s;
+}
+.gallows::after { /* Base Horizontal */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 5px;
+    background-color: transparent;
+    transition: all 0.5s;
+}
+
+/* Passo 1: Base e Poste */
+.gallows-step-1::before,
+.gallows-step-2::before {
+    background-color: #000;
+}
+.gallows-step-2::after {
+    background-color: #000;
+}
+
+/* Passo 3: Trave Superior */
+.gallows-step-3::before {
+    /* Trave horizontal de cima, desenhada no topo do poste */
+    width: 100px;
+    height: 5px;
+    top: 5%;
+    left: 10%;
+    background-color: #000;
+    transform: none; /* Resetando transformações anteriores se houver */
+}
+
+/* Passo 4: Corda */
+.gallows-step-4::before {
+    /* Corda/Suporte da cabeça */
+    width: 5px;
+    height: 30px;
+    top: 5%;
+    left: 45%;
+    background-color: #000;
+}
+
+
+/* --- DESENHO DO BONECO (USANDO PSEUDO-ELEMENTOS NA CLASSE .gallows) --- */
+
+/* Passo 5: Cabeça */
+.gallows-step-5::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    top: 8%; /* Posiciona no final da corda */
+    left: 42%;
+}
+
+/* Passo 6: Corpo */
+.gallows-step-6::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 80px;
+    background-color: #000;
+    top: 14%; 
+    left: 48%;
+}
+
+/* Passo 7: Braço Esquerdo */
+.gallows-step-7::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background-color: #000;
+    top: 20%; 
+    left: 48%;
+    transform: rotate(45deg); /* Angulo do braço */
+    transform-origin: top;
+}
+
+/* Passo 8: Braço Direito */
+.gallows-step-8::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background-color: #000;
+    top: 20%; 
+    left: 48%;
+    transform: rotate(-45deg); /* Angulo do braço */
+    transform-origin: top;
+}
+
+/* Passo 9: Perna Esquerda */
+.gallows-step-9::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background-color: #000;
+    top: 35%; 
+    left: 48%;
+    transform: rotate(45deg); /* Angulo da perna */
+    transform-origin: top;
+}
+
+/* Passo 10: Perna Direita (Fim do Jogo) */
+.gallows-step-10::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background-color: #000;
+    top: 35%; 
+    left: 48%;
+    transform: rotate(-45deg); /* Angulo da perna */
+    transform-origin: top;
+}
+
+
+/* -------------------------------------- */
+/* 2. DISPLAY DA PALAVRA */
+/* -------------------------------------- */
+
+.wordDisplay {
+    font-size: 2.5rem;
+    font-family: monospace;
+    letter-spacing: 15px;
+    margin: 30px 0;
+}
+.wordLetter {
+    border-bottom: 3px solid #333;
+    padding: 0 5px;
+}
+
+/* -------------------------------------- */
+/* 3. LISTA DE LETRAS USADAS */
+/* -------------------------------------- */
+
+.guessedLettersList {
+    width: 250px; /* Largura fixa para ficar ao lado da forca */
+    text-align: left;
+    margin-top: 50px;
+}
+.guessedLettersList h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+.lettersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.guessedLettersList span {
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.correctGuess {
+    background-color: #d4edda;
+    color: #155724;
+}
+.wrongGuess {
+    background-color: #f8d7da;
+    color: #721c24;
+    text-decoration: line-through; /* Risca a letra errada */
+}
+
+/* -------------------------------------- */
+/* 4. FEEDBACK */
+/* -------------------------------------- */
+
+.gameFeedback {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    width: 100%;
+}
+.gameFeedback p.win { color: green; font-weight: bold; }
+.gameFeedback p.lose { color: red; font-weight: bold; }
+.restartButton {
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.restartButton:hover {
+    background-color: #555;
+}
