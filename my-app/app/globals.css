@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto+Slab:wght@400;700&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -40,11 +42,53 @@ a {
     color-scheme: dark;
   }
 }
-
-.bluetext{
-  color: blue;
+/* Estilo geral para o corpo da página */
+body {
+  font-family: Arial, sans-serif; /* Define uma fonte básica */
+  margin: 0; /* Remove margens padrão do navegador */
+  padding: 20px; /* Adiciona um pouco de espaço nas bordas */
+  background-color: #F3E5AB; /* Cor de fundo suave (opcional) */
 }
 
-.avatar{
-  border-radius: 50%;
+/* Estilo para a DIV principal que envolve todo o conteúdo */
+.container {
+  /* Centraliza a div na horizontal */
+  max-width: 800px; /* Limita a largura para o texto não ficar muito longo */
+  margin: 0 auto; /* Centraliza a div na tela */
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco para o conteúdo (opcional) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+
+  /* Para centralizar o conteúdo de texto e imagem dentro desta div */
+  display: flex;
+  flex-direction: column; /* Coloca os itens um abaixo do outro */
+  align-items: center; /* CENTRALIZA ITENS HORIZONTALMENTE */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Centraliza o avatar (foto) se ele for um elemento de bloco */
+.avatar {
+  border-radius: 50%; /* Deixa a foto redonda */
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+  margin-bottom: 20px; /* Espaço abaixo da foto */
+}
+
+p {
+  font-family: 'Roboto Slab' serif;
+  
+  text-align: justify;
+
+  line-height: 1.6;
+
+  font-size: 1.25rem;
+
+  color: #555;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+h1{
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #333;
 }

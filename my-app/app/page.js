@@ -1,18 +1,15 @@
 
 //import { Html } from "next/document";
 import "./globals.css";
-import { products } from "ProductsLists";
 
 export default function Home() {
   return (
-    <div>
+    <div className="container">
       <img className="avatar" src="/assets/foto-minha.jpg" height={300} width={300} />
 
       <h1>Olá, me chamo Pedro Alves</h1>
 
-      <hr />
-
-      <p className="bluetext">
+      <p>
         Tenho 21 anos e sou estudante do 5&ordm;/6&ordm; período do curso Ciência da Computação na Universidade Católica de Pernambuco.
         Gosto muito de aprender e conhecer novas pessoas. Duas curiosidades sobre minha pessoa são:
         Primeiro, antes de ingressar na Católica, fiz dois períodos de Matemática Bacharelado na Universidade Federal de Pernambuco,
@@ -20,21 +17,9 @@ export default function Home() {
         Sou o caçula de três irmãos e amo muito minha família.
       </p>
 
-      <hr />
-
-      <p>
-        Sou apaixonado por música e, pra compartilhar um pouco mais de mim, vou mostrar uma canção que estive escutando bastante recentemente:
+      <p>  
       </p>
-
-      <hr></hr>
-
-
-
-      <audio src="/assets/a-primeira-vista.mp4" controls />
-
-      <hr></hr>
-
-      
+       
       </div>
   );
 }
