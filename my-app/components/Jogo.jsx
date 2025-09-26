@@ -3,20 +3,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Jogo.module.css';
 
-// O limite de erros (6 partes: cabeça, corpo, 2 braços, 2 pernas)
 const MAX_ERRORS = 6; 
 
-// Ordem das partes do boneco para remoção (do primeiro ao último erro)
 const FIGURE_PARTS = [
-    'right-leg',  // 1. Perna Direita (Sumirá no 1º erro)
-    'left-leg',   // 2. Perna Esquerda (Sumirá no 2º erro)
-    'right-arm',  // 3. Braço Direito (Sumirá no 3º erro)
-    'left-arm',   // 4. Braço Esquerdo (Sumirá no 4º erro)
-    'body',       // 5. Corpo (Sumirá no 5º erro)
-    'head'        // 6. Cabeça (Sumirá no 6º erro - Fim do jogo)
+    'right-leg',
+    'left-leg',
+    'right-arm',  
+    'left-arm',   
+    'body',       
+    'head'        
 ];
 
-// Lista de palavras aleatórias (com no máximo 10 letras)
 const WORDS = [
   "REACT", "PYTHON", "JAVA", "HTML", "CSS",
   "DJANGO", "VERCEL", "API", "CODIGO", "FORCA"
@@ -42,14 +39,13 @@ export default function Jogo() {
 
   // Verifica se o jogo acabou
   const checkGameStatus = useCallback(() => {
-    // 1. Condição de Vitória: Todas as letras da palavra foram adivinhadas
+    
     const isWordGuessed = word.split('').every(letter => guessedLetters.has(letter));
     if (isWordGuessed) {
       setGameState(prev => ({ ...prev, message: "🎉 Parabéns, você acertou a palavra!", gameOver: true, gameWon: true }));
       return;
     }
 
-    // 2. Condição de Derrota: Erros máximos alcançados
     if (wrongGuesses >= MAX_ERRORS) {
       setGameState(prev => ({ ...prev, message: `Você perdeu! A palavra era: ${word}`, gameOver: true, gameWon: false }));
     }
@@ -59,7 +55,7 @@ export default function Jogo() {
     checkGameStatus();
   }, [guessedLetters, wrongGuesses, checkGameStatus]);
 
-  // Função principal para lidar com a adivinhação da letra
+  // funcao principal para lidar com advinhacao da letra
   const handleGuess = useCallback((key) => {
     if (gameOver || !key || !/^[A-Z]$/.test(key)) return;
 
@@ -81,7 +77,7 @@ export default function Jogo() {
     });
   }, [gameOver, guessedLetters]);
 
-  // Lógica para capturar teclas do teclado (global)
+  //capturar teclas do teclado
   useEffect(() => {
     const handleKeyDown = (event) => {
       // Filtra apenas letras de A-Z
@@ -95,13 +91,11 @@ export default function Jogo() {
     };
   }, [handleGuess]);
 
-  // Lógica para reiniciar o jogo
+  //reiniciar o jogo
   const restartGame = () => {
     if (gameWon) {
-      // Se ganhou, reinicia com uma palavra nova
       setGameState(initializeGame());
     } else {
-      // Se perdeu, reinicia com a mesma palavra
       setGameState(prev => ({ 
         ...prev, 
         guessedLetters: new Set(),
@@ -113,7 +107,7 @@ export default function Jogo() {
     }
   };
 
-  // Renderiza os espaços das letras
+  //renderiza os espaços das letras
   const renderWord = () => {
     return word.split('').map((letter, index) => (
       <span key={index} className={styles.wordLetter}>
@@ -122,7 +116,7 @@ export default function Jogo() {
     ));
   };
   
-  // Renderiza o boneco (lógica inversa: começa completo, desaparece)
+  //renderiza o boneco
   const renderHangman = () => {
     const parts = FIGURE_PARTS.map((partName, index) => {
         // O índice (0 a 5) + 1 é o passo (1 a 6) que remove a parte.
@@ -154,12 +148,11 @@ export default function Jogo() {
       
       <div className={styles.gameArea}>
         
-        {/* 1. VISUAL DO BONECO */}
         <div className={styles.hangmanGallowsArea}>
           {renderHangman()}
         </div>
         
-        {/* 2. TECLAS JÁ TENTADAS */}
+        {/*teclas ja tentadas*/}
         <div className={styles.guessedLettersList}>
           <h3>Letras Usadas ({MAX_ERRORS - wrongGuesses} Tentativas Restantes):</h3>
           <div className={styles.lettersContainer}>
@@ -175,12 +168,10 @@ export default function Jogo() {
         </div>
       </div>
 
-      {/* 3. ESPAÇOS DAS LETRAS */}
       <div className={styles.wordDisplay}>
         {renderWord()}
       </div>
-
-      {/* 4. FEEDBACK E BOTÕES DE REINÍCIO */}
+      
       {gameOver && (
         <div className={styles.gameFeedback}>
           <p className={gameWon ? styles.win : styles.lose}>{message}</p>

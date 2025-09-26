@@ -1,17 +1,15 @@
 import Link from 'next/link';
-import styles from './Navbar.module.css'; // Importa o módulo CSS
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   return (
     <header className={styles.navbar}>
       <div className={styles.container}>
         
-        {/* Lado Esquerdo: Logo/Nome */}
         <Link href="/" className={styles.logo}>
-          Pedro Alves - CV {/* Substituí "ECOS" pelo seu nome, mas você pode mudar */}
+          Pedro Alves - CV 
         </Link>
         
-        {/* Lado Direito: Link "JOGO" */}
         <nav className={styles.navLinks}>
           <Link href="/jogo" className={styles.gameLink}> 
             JOGO

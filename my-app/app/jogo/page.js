@@ -1,10 +1,10 @@
-import Jogo from '../../components/Jogo'; // Importa o componente Jogo renomeado
+import Jogo from '../../components/Jogo';
 import Navbar from '../../components/Navbar'; 
 
 export default function JogoPage() {
   return (
     <>
-      <Navbar /> {/* Mantém a barra de navegação no topo */}
+      <Navbar />
       <div style={{ padding: '40px', textAlign: 'center' }}>
         <h1>Jogo da Forca</h1>
         <Jogo />
